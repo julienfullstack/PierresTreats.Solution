@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models;
+
+<h1>Welcome to Pierre's Treats</h1>
+  
+<p>@Html.ActionLink("Add a Flavor", "Create", "Flavors", null, new { @class = "btn" })</p>
+<p>@Html.ActionLink("Add a Treat", "Create", "Treats", null, new { @class = "btn" })</p>
+<p>@Html.ActionLink("Manage Flavors", "Index", "Flavors", null, new { @class = "btn" })</p>
+<p>@Html.ActionLink("Manage Treats", "Index", "Treats", null, new { @class = "btn" })</p>
+
+<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
