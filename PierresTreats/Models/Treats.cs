@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-#nullable enable
+// #nullable enable
 namespace PierresTreats.Models
 {
     public class Treat
@@ -14,6 +14,7 @@ namespace PierresTreats.Models
         public string Name { get; set; } = "";
 
         public List<FlavorTreats> JoinEntities { get; } = new List<FlavorTreats>();
+        public ApplicationUser User { get; set; }
     }
-#nullable disable
+// #nullable disable
 }
