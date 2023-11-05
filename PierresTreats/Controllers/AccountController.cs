@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using PierresTreats.Models;
-using System.Threading.Tasks;
 using PierresTreats.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace PierresTreats.Controllers
 {
@@ -12,11 +15,11 @@ namespace PierresTreats.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierresTreatsContext db)
+    public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, PierresTreatsContext db)
     {
+      _db = db;
       _userManager = userManager;
       _signInManager = signInManager;
-      _db = db;
     }
 
     public ActionResult Index()
@@ -24,14 +27,13 @@ namespace PierresTreats.Controllers
       return View();
     }
 
-    public IActionResult Register()
+    public ActionResult Register()
     {
-      
       return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Register (RegisterViewModel model)
+    public async Task<ActionResult> Register(RegisterViewModel model)
     {
       if (!ModelState.IsValid)
       {
@@ -43,11 +45,12 @@ namespace PierresTreats.Controllers
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-          return RedirectToAction("Index");
+          ViewBag.Confirmation = true;
+          return View("Index");
         }
         else
         {
-          foreach (IdentityError error in result.Errors)
+          foreach(IdentityError error in result.Errors)
           {
             ModelState.AddModelError("", error.Description);
           }
@@ -82,13 +85,12 @@ namespace PierresTreats.Controllers
         }
       }
     }
-    
+
     [HttpPost]
     public async Task<ActionResult> LogOff()
     {
       await _signInManager.SignOutAsync();
       return RedirectToAction("Index");
     }
-
   }
 }

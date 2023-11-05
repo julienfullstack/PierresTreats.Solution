@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PierresTreats.Models;
 using Microsoft.AspNetCore.Identity;
+using PierresTreats.Models;
 
 namespace PierresTreats
 {
@@ -10,7 +10,6 @@ namespace PierresTreats
   {
     static void Main(string[] args)
     {
-
       WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
       builder.Services.AddControllersWithViews();
@@ -19,41 +18,40 @@ namespace PierresTreats
                         dbContextOptions => dbContextOptions
                           .UseMySql(
                             builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
+                            )
                           )
-                        )
-                      );
+                        );
       
-      // New code below!!
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<PierresTreatsContext>()
-                .AddDefaultTokenProviders();
-                
-      builder.Services.Configure<IdentityOptions>(options =>
-        {
-          options.Password.RequireDigit = false;
-          options.Password.RequireLowercase = false;
-          options.Password.RequireNonAlphanumeric = false;
-          options.Password.RequireUppercase = false;
-          options.Password.RequiredLength = 0;
-          options.Password.RequiredUniqueChars = 0;
-        });
+                  .AddEntityFrameworkStores<PierresTreatsContext>()
+                  .AddDefaultTokenProviders();
+
+      // FOR DEVELOPMENT
+      // Override default password configurations for simple registration.
+      // builder.Services.Configure<IdentityOptions>(options => 
+      // {
+      //   options.Password.RequireDigit = false;
+      //   options.Password.RequireLowercase = false;
+      //   options.Password.RequireNonAlphanumeric = false;
+      //   options.Password.RequireUppercase = false;
+      //   options.Password.RequiredLength = 0;
+      //   options.Password.RequiredUniqueChars = 0;
+      // });
 
       WebApplication app = builder.Build();
 
-      // app.UseDeveloperExceptionPage();
       app.UseHttpsRedirection();
       app.UseStaticFiles();
-
+      
       app.UseRouting();
 
-
-      app.UseAuthentication(); 
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.MapControllerRoute(
-          name: "default",
-          pattern: "{controller=Home}/{action=Index}/{id?}"
-        );
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}"
+      );
 
       app.Run();
     }
