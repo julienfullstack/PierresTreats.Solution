@@ -1,4 +1,4 @@
-# _Dr. Sillystringz Factory_
+# _Pierre's Treats_
 
 #### By: _**Julien Lenaz**
 
