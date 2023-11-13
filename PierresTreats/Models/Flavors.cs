@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
-#nullable enable
+// #nullable enable
 namespace PierresTreats.Models
 {
     public class Flavor
@@ -18,5 +18,5 @@ namespace PierresTreats.Models
         public List<FlavorTreats> JoinEntities { get; } = new List<FlavorTreats>();
         public ApplicationUser User { get; set; } 
     }
-#nullable disable
+// #nullable disable
 }

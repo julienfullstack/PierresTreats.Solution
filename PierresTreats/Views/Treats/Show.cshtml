@@ -12,7 +12,7 @@
 }
 else
 {
-  <h4>This Treat assigned to the following engineerss:</h4>
+  <h4>This Treat assigned to the following flavors:</h4>
   <ul>
     @foreach(FlavorTreats join in Model.JoinEntities)
     {
@@ -30,7 +30,7 @@ else
 
 @using (Html.BeginForm("Delete", "Flavors", new { id = Model.TreatId }, FormMethod.Post))
 {
-    <input type="submit" value="Delete Treat" onclick="location.href='@Url.Action("Delete", "Treats", new { id = Model.TreatId })'; return false;" />
+    <input type="submit" value="Delete Treat" onclick="location.href='@Url.Action("Delete", "Treats", new { id = Model.TreatId }); return false;" />
   }
 
 @using (Html.BeginForm("Edit", "Treats", new { id = Model.TreatId }, FormMethod.Post))
