@@ -3,7 +3,6 @@
 }
 
 @model PierresTreats.Models.Treat
-@using PierresTreats.Models
 
 @{
     ViewBag.Title = "Edit";
@@ -11,10 +10,16 @@
 
 <h2>Edit</h2>
 
- @using (Html.BeginForm("Edit", "Treats", new { id = Model.TreatId }, FormMethod.Post))
+<h4>Edit this treat: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
 {
+  @Html.HiddenFor(model => model.TreatId)
+
   @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-  <input class="btn" type ="submit" value="Edit" onclick="return confirm('Are you sure you want to edit this Treat?');"/>
+  @Html.EditorFor(model => model.Name)
+
+  <input type="submit" value="Save" />
 }
 
+<p>@Html.ActionLink("Back to list", "Index")</p>

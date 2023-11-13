@@ -4,7 +4,7 @@
 
 @model PierresTreats.Models.Flavor
 
-<h2>Add a Flavor</h2>
+<h2>Add a treat to this flavor</h2>
 
 <h4>Add a treat to this Flavor: @Html.DisplayFor(model => model.Name)</h4>
 
@@ -17,3 +17,5 @@
 
   <input type="submit" value="save" />
 }
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

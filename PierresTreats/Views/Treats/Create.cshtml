@@ -4,23 +4,17 @@
 
 @model PierresTreats.Models.Treat
 
-<h4>Add a new Treat</h4>
-<div class="col">
+<h4>Add a new treat</h4>
 
-    @using (Html.BeginForm())
-    {
-        @Html.LabelFor(model => model.Name, new { @class = "form-label"})
-        @Html.TextBoxFor(model => model.Name,  new { @class = "form-control"})
-        <br>
-        
-        <br><br>
-        <input type="submit" value="Add new Treat" class="btn btn-primary btn-sm" />
-    }
-    <br>
-<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600;"}) </p>
-<p>@Html.ActionLink("Show all Treats", "Index")</p>
+<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 
-
-</div>
-
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <input type="submit" value="Add a new treat" class="btn btn-primary" />
+}
+<p>@Html.ActionLink("Show all treats", "Index")</p>
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>
 

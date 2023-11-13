@@ -1,13 +1,55 @@
 @{
-  Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
 }
 
-@using PierresTreats.Models;  
-@model List<PierresTreats.Models.Flavor>
+@{
+    Layout = "_Layout";
+    
+}
 
-<h1>Welcome to Pierre's Treats!</h1>
+@using PierresTreats.Models;
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>Welcome to Pierre's Treats, @User.Identity.Name!</h2>
+}
+else
+{
+    <h2>Welcome Pierre's Treats!</h2>
+}
+
+<hr>
 
 <h4>Treats</h4>
+@if (Model["treats"] == null)
+{
+    <p>No treats have been added yet!</p>
+}
+<ul>
+    @foreach (Treat treat in Model["treats"])
+    {
+        <li>@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })</li>
+    }
+</ul>
+
+<hr>
+
+<h4>Flavors</h4>
+@if (Model["flavors"] == null)
+{
+    <p>No flavors have been added yet!</p>
+}
+
+    <ul>
+        @foreach (Flavor flavor in Model["flavors"])
+        {
+            <li>@Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = @flavor.FlavorId })</li>
+        }
+    </ul>
+<hr>
+
+
+    
 
 <hr>
 @if (User.Identity.IsAuthenticated)
