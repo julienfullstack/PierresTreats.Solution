@@ -1,13 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using PierresTreatsSolution.Modelss;
-using PierresTreats.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
+using PierresTreats.Solution.Models;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+using PierresTreats.Solution.ViewModels;
 
-namespace PierresTreats.Controllers
+namespace PierresTreats.Solution.Controllers
 {
   public class AccountController : Controller
   {
@@ -15,11 +12,11 @@ namespace PierresTreats.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, PierresTreatsContext db)
+    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ToDoListContext db)
     {
-      _db = db;
       _userManager = userManager;
       _signInManager = signInManager;
+      _db = db;
     }
 
     public ActionResult Index()
@@ -27,13 +24,13 @@ namespace PierresTreats.Controllers
       return View();
     }
 
-    public ActionResult Register()
+    public IActionResult Register()
     {
       return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Register(RegisterViewModel model)
+    public async Task<ActionResult> Register (RegisterViewModel model)
     {
       if (!ModelState.IsValid)
       {
@@ -45,12 +42,11 @@ namespace PierresTreats.Controllers
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-          ViewBag.Confirmation = true;
-          return View("Index");
+          return RedirectToAction("Index");
         }
         else
         {
-          foreach(IdentityError error in result.Errors)
+          foreach (IdentityError error in result.Errors)
           {
             ModelState.AddModelError("", error.Description);
           }
@@ -59,7 +55,7 @@ namespace PierresTreats.Controllers
       }
     }
 
-    public ActionResult Login()
+        public ActionResult Login()
     {
       return View();
     }
