@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using PierresTreats.Models;
+using PierresTreatsSolution.Modelss;
 using PierresTreats.ViewModels;
 using System.Collections.Generic;
 using System.Linq;

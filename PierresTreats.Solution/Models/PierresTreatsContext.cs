@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
-namespace PierresTreats.Models
+namespace PierresTreatsSolution.Modelss
 {
   public class PierresTreatsContext : IdentityDbContext<ApplicationUser>
   {

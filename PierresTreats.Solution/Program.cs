@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PierresTreats.Models;
+using PierresTreatsSolution.Modelss;
 using Microsoft.AspNetCore.Identity;
 
 namespace BakeryWithAuth

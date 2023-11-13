@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 // #nullable enable
-namespace PierresTreats.Models
+namespace PierresTreatsSolution.Modelss
 {
     public class Treat
     {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace PierresTreats.Models
+namespace PierresTreatsSolution.Modelss
 {
     public class ApplicationUser : IdentityUser
     {

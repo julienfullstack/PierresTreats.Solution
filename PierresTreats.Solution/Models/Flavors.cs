@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 
 // #nullable enable
-namespace PierresTreats.Models
+namespace PierresTreatsSolution.Modelss
 {
     public class Flavor
     {

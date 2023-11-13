@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PierresTreats.Models;
+using PierresTreatsSolution.Modelss;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
