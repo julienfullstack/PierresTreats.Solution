@@ -1,0 +1,16 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace PierresTreats.Models
+{
+  public class FlavorTreat
+  {
+    public int FlavorTreatId { get; set; }
+    public int TreatId { get; set; }
+    public Treat Treat { get; set; }
+    public int FlavorId { get; set; }
+    public Flavor Flavor { get; set; }
+  }
+}

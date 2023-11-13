@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models;  
+@model List<PierresTreats.Models.Flavor>
+
+<h1>Welcome to Pierre's Treats!</h1>
+
+<h4>Treats</h4>
+
+<hr>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("Manage Treats", "Index", "Treats")</p>
+    <p>@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
+}
+<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
