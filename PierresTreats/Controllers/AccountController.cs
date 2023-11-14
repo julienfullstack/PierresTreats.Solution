@@ -39,6 +39,7 @@ namespace PierresTreats.Controllers
       else
       {
         ApplicationUser user = new ApplicationUser { UserName = model.Email };
+        user.DisplayName = model.DisplayName;
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
@@ -55,7 +56,7 @@ namespace PierresTreats.Controllers
       }
     }
 
-        public ActionResult Login()
+    public ActionResult Login()
     {
       return View();
     }
@@ -81,7 +82,6 @@ namespace PierresTreats.Controllers
         }
       }
     }
-
     [HttpPost]
     public async Task<ActionResult> LogOff()
     {
