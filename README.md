@@ -30,14 +30,9 @@
       }
     }
     ``` 
+*_Navigate to the PierresTreats directory in the terminal_
+* _Enter $ dotnet ef database update to create the database_
 * _In the PierresTreats dictionary, restore with $ dotnet restore_
-* _Download MySQL and MySQL Workbench if you do not have them already_
-* _In MySQL Workbench, go to the Navigator > Administration window and select Data Import/Restore_
-* _In Import Options select Import from Self-Contained File_
-* _Navigate to julien_lenaz.sql in the PierresTreats directory_
-* _Under Default Schema to be Imported To, select the New button_
-* _Enter the name of your database and click Ok_
-* _Click Start Import_
 * _In the terminal, enter $ dotnet run to run the program_
 
 ## Known Bugs
