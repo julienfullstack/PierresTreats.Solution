@@ -15,7 +15,7 @@ namespace PierresTreats.Models
 
         [Required(ErrorMessage = "This field can't be left empty")]
         public string Name { get; set; } = "";
-       public List<FlavorTreat> JoinEntities { get; set; }
+        public List<FlavorTreat> JoinEntities { get; set; }
         public ApplicationUser User { get; set; } 
     }
 }

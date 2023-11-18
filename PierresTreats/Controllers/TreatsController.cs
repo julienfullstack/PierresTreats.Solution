@@ -1,15 +1,14 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using PierresTreats.Models;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using System;
+using Microsoft.AspNetCore.Identity;
 using PierresTreats.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace PierresTreats.Controllers
 {
@@ -123,5 +122,30 @@ namespace PierresTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddFlavors(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult AddFlavors(Treat treat, int flavorId)
+    {
+      FlavorTreat joinEntity = _db.FlavorTreat.FirstOrDefault(join => (join.FlavorId == flavorId && join.TreatId == treat.TreatId));
+      if (joinEntity == null && flavorId != 0)
+      {
+        _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavorId, TreatId = treat.TreatId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = treat.TreatId });
+    }
+
+
+
+
   }
+
+      
 }
