@@ -12,16 +12,21 @@
 
 @if(@Model.JoinEntities.Count == 0)
 {
-  <p>This flavor isn't assigned to any treats yet.</p>
+  <p>This flavor doesn't have any treats assigned to it yet.</p>
 }
 else
 {
-  <h4>This flavor is assigned to the following treats</h4>
+  <h4>This flavor has the following treatss</h4>
   <ul>
     @foreach(FlavorTreat join in Model.JoinEntities)
     {
       <li>Treat: @join.Treat.Name</li>
+      @using (Html.BeginForm("DeleteJoin", "Flavors"))
+      {
+        @Html.Hidden("joinId", @join.FlavorTreatId)
+        <input type="submit" value="Delete"/>
       }
+    }
   </ul>
 }
 
@@ -30,5 +35,6 @@ else
     <p>@Html.ActionLink("Back to list", "Index")</p>
     <p>@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId })</p>
     <p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+    <p>@Html.ActionLink("Add treat", "AddTreats", new { id = Model.FlavorId })</p>
 }
-@Html.ActionLink("Back to Home", "Index", "Home")
+
